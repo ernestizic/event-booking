@@ -1,24 +1,25 @@
-import logo from './logo.svg';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
+import QrCodeContextProvider from './contexts/QrCodeContext';
+import IndexScreen from './screens/IndexScreen/IndexScreen';
+import RegisterScreen from './screens/RegisterScreen/RegisterScreen';
+import TicketScreen from './screens/TicketScreen/TicketScreen';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <QrCodeContextProvider>
+          <div className='content-wrap'>
+            <Routes>
+              <Route exact path='/'element={<IndexScreen />} />
+              <Route exact path='/register'element={<RegisterScreen />} />
+              <Route exact path='/ticket'element={<TicketScreen />} />
+            </Routes>
+          </div>
+        </QrCodeContextProvider>
+      </div>
+    </BrowserRouter>
   );
 }
 
